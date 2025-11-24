@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>당신의 이름 | 포트폴리오</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 사이버 보안 테마 스타일 --- */
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --primary-color: #39d353; /* GitHub-like Green */
+            --card-color: #161b22;
+            --border-color: #30363d;
+            --header-height: 60px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+
+
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(57, 211, 83, 0.4);
+        }
+        
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+        }
+
+        /* --- 헤더 & 네비게이션 --- */
+        .main-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(13, 17, 23, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: 700;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+
+        /* --- 홈 섹션 & 타이핑 효과 --- */
+        #home {
+            height: calc(100vh - var(--header-height));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            border-right: 0.15em solid var(--primary-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(30, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        #home p {
+            font-size: 1.2rem;
+            color: #8b949e;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary-color); }
+        }
+
+        /* --- 자기소개 섹션 --- */
+        #about .about-content {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text { flex: 2; }
+        .about-photo { flex: 1; text-align: center; }
+
+        .about-photo img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 0 15px rgba(57, 211, 83, 0.5);
+            filter: grayscale(50%) brightness(0.9);
+        }
+        
+        /* --- 기술 섹션 --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background-color: var(--card-color);
+            padding: 25px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+        
+        .skill-category li {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            border-radius: 5px;
+            background: #0d1117;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        /* --- 프로젝트 섹션 --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--card-color);
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            gap: 20px;
+            overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px rgba(57, 211, 83, 0.2);
+        }
+
+        .project-image {
+            width: 300px;
+            flex-shrink: 0;
+            background-color: #010409;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+        }
+        
+        .project-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-content h3 { font-size: 1.5rem; }
+        .project-content p { margin: 15px 0; flex-grow: 1; color: #8b949e; }
+        
+        .project-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 15px;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .project-links a:hover {
+             text-shadow: 0 0 8px var(--primary-color);
+        }
+
+        /* --- 연락처 섹션 --- */
+        #contact { text-align: center; }
+        #contact p { font-size: 1.1rem; margin-bottom: 25px; color: #8b949e;}
+        .contact-button {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 14px 28px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+        .contact-button:hover { 
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(57, 211, 83, 0.5);
+        }
+        
+        /* --- 푸터 --- */
+        .main-footer {
+            text-align: center;
+            padding: 20px;
+            background: #010409;
+            border-top: 1px solid var(--border-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- =================================
+    헤더 (네비게이션)
+    ================================== -->
+    <header class="main-header">
+        <div class="container">
+            <!-- 사용자의 이니셜이나 짧은 로고로 변경하세요 -->
+            <a href="#home" class="logo">YOUR NAME</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">소개</a></li>
+                    <li><a href="#skills">기술</a></li>
+                    <li><a href="#projects">프로젝트</a></li>
+                    <li><a href="#contact">연락처</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- =================================
+        홈 섹션
+        ================================== -->
+        <section id="home">
+            <!-- 당신의 이름과 직무로 변경하세요 -->
+            <h1>당신의 이름</h1>
+            <p>창의적인 웹 개발자</p>
+        </section>
+
+        <!-- =================================
+        자기소개 섹션
+        ================================== -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">소개</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>안녕하세요, [당신의 이름]입니다.</h3>
+                        <!-- 당신의 자기소개를 자유롭게 작성하세요 -->
+                        <p>
+                            저는 N년간 웹 개발자로 일하며 사용자 중심의 인터랙티브한 웹사이트를 만들어왔습니다.
+                            새로운 기술을 배우고 적용하는 것을 즐기며, 동료와 함께 성장하는 것을 중요하게 생각합니다.
+                            문제 해결 과정에서 느끼는 즐거움이 저를 움직이는 원동력입니다.
+                        </p>
+                        <p>
+                            주로 JavaScript와 React, Next.js를 사용하여 개발하며,
+                            견고하고 확장 가능한 코드를 작성하기 위해 노력합니다.
+                        </p>
+                    </div>
+                    <div class="about-photo">
+                        <!-- 'your-photo.jpg'를 당신의 사진 파일명으로 변경하세요 -->
+                        <img src="https://via.placeholder.com/250" alt="당신 사진">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================
+        기술 섹션
+        ================================== -->
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">보유 기술</h2>
+                <div class="skills-grid">
+                    <!-- 보유한 기술에 맞게 수정하세요 -->
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <ul>
+                            <li>HTML5 & CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>React & Next.js</li>
+                            <li>TypeScript</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <ul>
+                            <li>Node.js</li>
+                            <li>Express</li>
+                            <li>Python & Django</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Etc</h3>
+                        <ul>
+                            <li>Git & GitHub</li>
+                            <li>Figma</li>
+                            <li>Vercel</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================
+        프로젝트 섹션
+        ================================== -->
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">프로젝트</h2>
+                <div class="projects-grid">
+                    <!-- 아래 .project-card를 복사하여 당신의 프로젝트를 추가하세요 -->
+                    <div class="project-card">
+                        <div class="project-image">프로젝트 이미지 (400x200)</div>
+                        <div class="project-content">
+                            <h3>프로젝트 1 제목</h3>
+                            <p>이 프로젝트는 ...을 해결하기 위해 만들어졌습니다. 사용자는 ... 기능을 통해 ... 할 수 있습니다. React와 Node.js를 사용하여 개발했습니다.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-image">프로젝트 이미지 (400x200)</div>
+                        <div class="project-content">
+                            <h3>프로젝트 2 제목</h3>
+                            <p>두 번째 프로젝트에 대한 간략한 설명입니다. 이 프로젝트의 주요 특징과 사용된 기술 스택을 작성하세요.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">프로젝트 이미지 (400x200)</div>
+                        <div class="project-content">
+                            <h3>프로젝트 3 제목</h3>
+                            <p>세 번째 프로젝트에 대한 간략한 설명입니다. 이 프로젝트의 주요 특징과 사용된 기술 스택을 작성하세요.</p>
+                            <div class="project-links">
+                                <a href="#" target="_blank">Live Demo</a>
+                                <a href="#" target="_blank">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================
+        연락처 섹션
+        ================================== -->
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">연락처</h2>
+                <p>언제든지 편하게 연락주세요. 함께 일할 기회를 기다립니다.</p>
+                <!-- 'your-email@example.com'을 당신의 이메일로 변경하세요 -->
+                <a href="mailto:your-email@example.com" class="contact-button">이메일 보내기</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- =================================
+    푸터
+    ================================== -->
+    <footer class="main-footer">
+        <div class="container">
+            <!-- 당신의 이름으로 변경하세요 -->
+            <p>&copy; 2025 당신의 이름. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
