@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박대만 | 포트폴리오</title>
+    <title>박대만 | CTF Write-up</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -17,19 +17,10 @@
             --header-height: 60px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -37,7 +28,6 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             line-height: 1.7;
-            animation: fadeIn 1s ease-in-out;
         }
 
         .container {
@@ -51,22 +41,6 @@
             color: var(--primary-color);
             text-shadow: 0 0 5px rgba(57, 211, 83, 0.4);
         }
-        
-        section {
-            padding: 80px 0;
-            border-bottom: 1px solid var(--border-color);
-            position: relative;
-        }
-
-        section:last-of-type {
-            border-bottom: none;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-        }
 
         /* --- 헤더 & 네비게이션 --- */
         .main-header {
@@ -74,7 +48,7 @@
             top: 0;
             width: 100%;
             height: var(--header-height);
-            background-color: rgba(13, 17, 23, 0.7);
+            background-color: rgba(13, 17, 23, 0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
             display: flex;
@@ -86,10 +60,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
         }
 
         .logo {
-            font-family: 'Roboto Mono', monospace;
             font-size: 1.5rem;
             color: #fff;
             text-decoration: none;
@@ -99,191 +73,42 @@
         .main-nav ul {
             display: flex;
             list-style: none;
+            gap: 10px;
         }
 
         .main-nav a {
             color: var(--text-color);
             text-decoration: none;
-            padding: 10px 15px;
+            padding: 8px 12px;
             font-weight: 700;
-            transition: color 0.3s, text-shadow 0.3s;
+            border-radius: 4px;
+            transition: color 0.3s, background 0.3s;
         }
 
-        .main-nav a:hover {
+        .main-nav a:hover, .main-nav a.active {
             color: var(--primary-color);
+            background: rgba(57, 211, 83, 0.1);
             text-shadow: 0 0 8px var(--primary-color);
         }
 
-        /* --- 홈 섹션 --- */
-        #home {
-            height: calc(100vh - var(--header-height));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* --- 본문 섹션 --- */
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
             text-align: center;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-            z-index: 0;
-        }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: linear-gradient(0deg, transparent 24%, var(--primary-color) 25%, var(--primary-color) 26%, transparent 27%, transparent 74%, var(--primary-color) 75%, var(--primary-color) 76%, transparent 77%, transparent),
-                              linear-gradient(90deg, transparent 24%, var(--primary-color) 25%, var(--primary-color) 26%, transparent 27%, transparent 74%, var(--primary-color) 75%, var(--primary-color) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            opacity: 0.15;
-            z-index: -1;
-            animation: animateGrid 30s linear infinite, changeHue 20s linear infinite;
-        }
-
-        @keyframes animateGrid {
-            from { background-position: 0 0; }
-            to { background-position: 50px 50px; }
-        }
-        
-        @keyframes changeHue {
-            from { filter: hue-rotate(0deg); }
-            to { filter: hue-rotate(360deg); }
-        }
-
-        #home h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            border-right: 0.15em solid var(--primary-color);
-            white-space: nowrap;
-            overflow: hidden;
-            max-width: fit-content;
-            animation: typing 1.5s steps(3, end) forwards, blink-caret .75s step-end 2 forwards;
-        }
-
-        #home p {
-            font-size: 1.2rem;
-            color: #8b949e;
-        }
-
-        @keyframes typing {
-            from { max-width: 0 }
-            to { max-width: 10ch }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary-color); }
-        }
-
-        /* --- 자기소개 섹션 --- */
-        #about .about-content {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-text { flex: 2; }
-        .about-photo { flex: 1; text-align: center; }
-
-        .about-photo img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary-color);
-            box-shadow: 0 0 15px rgba(57, 211, 83, 0.5);
-            filter: grayscale(50%) brightness(0.9);
-        }
-        
-        /* --- 기술 섹션 --- */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .skill-category {
-            background-color: var(--card-color);
-            padding: 25px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-        }
-
-        .skill-category h3 {
-            font-size: 1.3rem;
+            font-size: 2.2rem;
             margin-bottom: 15px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
         }
 
-        .skill-category ul {
-            list-style: none;
-        }
-        
-        .skill-category li {
-            margin-bottom: 8px;
-            padding: 8px 12px;
-            border-radius: 5px;
-            background: #0d1117;
-            border-left: 3px solid var(--primary-color);
+        .section-desc {
+            text-align: center;
+            color: #8b949e;
+            margin-bottom: 40px;
         }
 
-        /* --- 프로젝트 섹션 --- */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        .project-card {
-            background: var(--card-color);
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
-            display: flex;
-            gap: 20px;
-            overflow: hidden;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .project-card:hover {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 20px rgba(57, 211, 83, 0.2);
-        }
-
-        .project-image {
-            width: 300px;
-            flex-shrink: 0;
-            background-color: #010409;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-style: italic;
-        }
-        
-        .project-content {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .project-content h3 { font-size: 1.5rem; }
-        .project-content p { margin: 15px 0; flex-grow: 1; color: #8b949e; }
-        
-        .project-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: bold;
-            margin-right: 15px;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-        .project-links a:hover {
-             text-shadow: 0 0 8px var(--primary-color);
-        }
-
-        /* --- CTF Write-up 섹션 스타일 --- */
+        /* --- 터미널 & 라이트업 리스트 --- */
         .terminal-bar {
             background: #010409;
             border: 1px solid var(--border-color);
@@ -311,6 +136,7 @@
             border: 1px solid var(--border-color);
             border-top: none;
             border-radius: 0 0 6px 6px;
+            margin-bottom: 50px;
         }
 
         .writeup-item {
@@ -373,33 +199,14 @@
             display: block;
         }
 
-        /* --- 연락처 섹션 --- */
-        #contact { text-align: center; }
-        #contact p { font-size: 1.1rem; margin-bottom: 25px; color: #8b949e;}
-        .contact-button {
-            display: inline-block;
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            padding: 14px 28px;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-        }
-        .contact-button:hover { 
-            background-color: var(--primary-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(57, 211, 83, 0.5);
-        }
-        
         /* --- 푸터 --- */
         .main-footer {
             text-align: center;
             padding: 20px;
             background: #010409;
             border-top: 1px solid var(--border-color);
+            color: #8b949e;
+            font-size: 0.9rem;
         }
     </style>
 </head>
@@ -407,167 +214,73 @@
 
     <header class="main-header">
         <div class="container">
-            <a href="#home" class="logo">박대만</a>
+            <a href="index.html" class="logo">박대만</a>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#about">소개</a></li>
-                    <li><a href="#skills">기술</a></li>
-                    <li><a href="#projects">프로젝트</a></li>
-                    <li><a href="#ctf">CTF Write-up</a></li> <!-- 연락처 바로 앞에 추가된 메뉴 -->
-                    <li><a href="#contact">연락처</a></li>
+                    <li><a href="index.html#about">소개</a></li>
+                    <li><a href="index.html#skills">기술</a></li>
+                    <li><a href="index.html#projects">프로젝트</a></li>
+                    <li><a href="ctf.html" class="active">CTF Write-up</a></li>
+                    <li><a href="index.html#contact">연락처</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main>
-        <section id="home">
-            <h1>박대만</h1>
-            <p>IT & 사이버 보안 전공 예비 대학생</p>
-        </section>
+    <main class="container content-section">
+        <h2 class="section-title">CTF Write-up Archive</h2>
+        <p class="section-desc">보안 문제 풀이 및 분석 과정을 기록하는 공간입니다. 항목을 클릭하여 상세 풀이를 확인하세요.</p>
 
-        <section id="about">
-            <div class="container">
-                <h2 class="section-title">소개</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <h3>안녕하세요, 박대만입니다.</h3>
-                        <p>
-                            변화하는 IT 환경 속에서 가치를 창출하는 개발자 및 보안 전문가를 목표로 하고 있습니다. 
-                            탄탄한 프로그래밍 기초와 웹 기술을 바탕으로 실무 역량을 키워나가고 있으며, 
-                            지속적인 학습과 도전으로 전문성을 다지고 있습니다.
-                        </p>
-                    </div>
-                    <div class="about-photo">
-                        <img src="images/irem.jpg" alt="프로필 사진">
-                    </div>
+        <div class="terminal-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span>bash - ctf_archive_list.sh</span>
+        </div>
+
+        <div class="writeup-list">
+            <!-- 라이트업 항목 1 -->
+            <div class="writeup-item" onclick="this.classList.toggle('active')">
+                <div class="meta-info">
+                    <span class="tag">OverTheWire</span>
+                    <span class="tag">Bandit</span>
+                    <span class="date">2026-03</span>
                 </div>
-            </div>
-        </section>
-
-        <section id="skills">
-            <div class="container">
-                <h2 class="section-title">보유 기술</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Frontend</h3>
-                        <ul>
-                            <li>HTML5 & CSS</li>
-                            <li>JavaScript (ES6+)</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Backend</h3>
-                        <ul>
-                            <li>Python</li>
-                        </ul>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Etc</h3>
-                        <ul>
-                            <li>Git & GitHub</li>
-                            <li>Vercel</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <div class="container">
-                <h2 class="section-title">프로젝트</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">프로젝트 이미지</div>
-                        <div class="project-content">
-                            <h3>프로젝트 1 제목</h3>
-                            <p>추가 예정 프로젝트입니다.</p>
-                            <div class="project-links">
-                                <a href="여기에_깃허브_링크_입력" target="_blank">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="project-card">
-                        <div class="project-image">프로젝트 이미지</div>
-                        <div class="project-content">
-                            <h3>프로젝트 2 제목</h3>
-                            <p>추가 예정 프로젝트입니다.</p>
-                            <div class="project-links">
-                                <a href="여기에_깃허브_링크_입력" target="_blank">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 새로운 CTF Write-up 섹션 (연락처 바로 전) -->
-        <section id="ctf">
-            <div class="container">
-                <h2 class="section-title">CTF Write-up</h2>
-                <p style="text-align: center; color: #8b949e; margin-bottom: 30px;">보안 문제 풀이 및 분석 과정을 아카이빙하는 공간입니다. 항목을 클릭해 상세 풀이를 확인하세요.</p>
-
-                <div class="terminal-bar">
-                    <span class="dot dot-red"></span>
-                    <span class="dot dot-yellow"></span>
-                    <span class="dot dot-green"></span>
-                    <span>bash - ctf_archive_list.sh</span>
-                </div>
-
-                <div class="writeup-list">
-                    <!-- 라이트업 항목 1 -->
-                    <div class="writeup-item" onclick="this.classList.toggle('active')">
-                        <div class="meta-info">
-                            <span class="tag">OverTheWire</span>
-                            <span class="tag">Bandit</span>
-                            <span class="date">2026-03</span>
-                        </div>
-                        <div class="writeup-title">[Bandit] Level 16 &rarr; Level 17 Write-up</div>
-                        <div class="writeup-summary">포트 스캔(nmap) 활용 및 SSH 키 교환 과정 트러블슈팅 정리</div>
-                        <div class="writeup-detail"># Problem Analysis
+                <div class="writeup-title">[Bandit] Level 16 &rarr; Level 17 Write-up</div>
+                <div class="writeup-summary">포트 스캔(nmap) 활용 및 SSH 키 교환 과정 트러블슈팅 정리</div>
+                <div class="writeup-detail"># Problem Analysis
 - nmap을 통한 포트 스캔 범위 지정 및 서비스 확인
 - SSL/TLS 연결 시 발생하는 renegotiation 이슈 해결 과정 및 manpage 참조 내용 기록</div>
-                    </div>
+            </div>
 
-                    <!-- 라이트업 항목 2 -->
-                    <div class="writeup-item" onclick="this.classList.toggle('active')">
-                        <div class="meta-info">
-                            <span class="tag">Web Hacking</span>
-                            <span class="tag">Dreamhack</span>
-                            <span class="date">2026-02</span>
-                        </div>
-                        <div class="writeup-title">XSS Filtering Bypass 기술 정리</div>
-                        <div class="writeup-summary">정규 표현식을 우회하기 위한 특수 문자 인코딩 및 태그 변형 기법</div>
-                        <div class="writeup-detail"># Vulnerability Note
+            <!-- 라이트업 항목 2 -->
+            <div class="writeup-item" onclick="this.classList.toggle('active')">
+                <div class="meta-info">
+                    <span class="tag">Web Hacking</span>
+                    <span class="tag">Dreamhack</span>
+                    <span class="date">2026-02</span>
+                </div>
+                <div class="writeup-title">XSS Filtering Bypass 기술 정리</div>
+                <div class="writeup-summary">정규 표현식을 우회하기 위한 특수 문자 인코딩 및 태그 변형 기법</div>
+                <div class="writeup-detail"># Vulnerability Note
 - 필터링 로직에서 대소문자 혼용 및 우회 문자열 패턴 분석
 - 페이로드 작성 시 공백 대체 문자의 활용법 정리</div>
-                    </div>
+            </div>
 
-                    <!-- 라이트업 항목 3 -->
-                    <div class="writeup-item" onclick="this.classList.toggle('active')">
-                        <div class="meta-info">
-                            <span class="tag">Brute Force</span>
-                            <span class="tag">DVWA</span>
-                            <span class="date">2026-01</span>
-                        </div>
-                        <div class="writeup-title">DVWA Brute Force (Low to High) 풀이</div>
-                        <div class="writeup-summary">Burp Suite와 Hydra를 활용한 인증 우회 및 무차별 대입 공격 실습</div>
-                        <div class="writeup-detail"># Attack Vector
+            <!-- 라이트업 항목 3 -->
+            <div class="writeup-item" onclick="this.classList.toggle('active')">
+                <div class="meta-info">
+                    <span class="tag">Brute Force</span>
+                    <span class="tag">DVWA</span>
+                    <span class="date">2026-01</span>
+                </div>
+                <div class="writeup-title">DVWA Brute Force (Low to High) 풀이</div>
+                <div class="writeup-summary">Burp Suite와 Hydra를 활용한 인증 우회 및 무차별 대입 공격 실습</div>
+                <div class="writeup-detail"># Attack Vector
 - Low 레벨 세션 토큰 및 파라미터 구조 분석
 - Hydra를 이용한 고속 로그인 브루트포싱 테스트 환경 구축</div>
-                    </div>
-                </div>
             </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2 class="section-title">연락처</h2>
-                <p>언제든지 편하게 연락주세요. 함께 성장할 기회를 기다립니다.</p>
-                <a href="mailto:your-email@example.com" class="contact-button">이메일 보내기</a>
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer class="main-footer">
