@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -239,49 +238,8 @@
             <span>bash - ctf_archive_list.sh</span>
         </div>
 
-        <div class="writeup-list">
-            <!-- 라이트업 항목 1 -->
-            <div class="writeup-item" onclick="this.classList.toggle('active')">
-                <div class="meta-info">
-                    <span class="tag">OverTheWire</span>
-                    <span class="tag">Bandit</span>
-                    <span class="date">2026-03</span>
-                </div>
-                <div class="writeup-title">[Bandit] Level 16 &rarr; Level 17 Write-up</div>
-                <div class="writeup-summary">포트 스캔(nmap) 활용 및 SSH 키 교환 과정 트러블슈팅 정리</div>
-                <div class="writeup-detail"># Problem Analysis
-- nmap을 통한 포트 스캔 범위 지정 및 서비스 확인
-- SSL/TLS 연결 시 발생하는 renegotiation 이슈 해결 과정 및 manpage 참조 내용 기록</div>
-            </div>
-
-            <!-- 라이트업 항목 2 -->
-            <div class="writeup-item" onclick="this.classList.toggle('active')">
-                <div class="meta-info">
-                    <span class="tag">Web Hacking</span>
-                    <span class="tag">Dreamhack</span>
-                    <span class="date">2026-02</span>
-                </div>
-                <div class="writeup-title">XSS Filtering Bypass 기술 정리</div>
-                <div class="writeup-summary">정규 표현식을 우회하기 위한 특수 문자 인코딩 및 태그 변형 기법</div>
-                <div class="writeup-detail"># Vulnerability Note
-- 필터링 로직에서 대소문자 혼용 및 우회 문자열 패턴 분석
-- 페이로드 작성 시 공백 대체 문자의 활용법 정리</div>
-            </div>
-
-            <!-- 라이트업 항목 3 -->
-            <div class="writeup-item" onclick="this.classList.toggle('active')">
-                <div class="meta-info">
-                    <span class="tag">Brute Force</span>
-                    <span class="tag">DVWA</span>
-                    <span class="date">2026-01</span>
-                </div>
-                <div class="writeup-title">DVWA Brute Force (Low to High) 풀이</div>
-                <div class="writeup-summary">Burp Suite와 Hydra를 활용한 인증 우회 및 무차별 대입 공격 실습</div>
-                <div class="writeup-detail"># Attack Vector
-- Low 레벨 세션 토큰 및 파라미터 구조 분석
-- Hydra를 이용한 고속 로그인 브루트포싱 테스트 환경 구축</div>
-            </div>
-        </div>
+        <!-- 자바스크립트에 의해 데이터가 자동으로 주입되는 공간 -->
+        <div class="writeup-list" id="writeupContainer"></div>
     </main>
 
     <footer class="main-footer">
@@ -289,5 +247,74 @@
             <p>&copy; 2026 박대만. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // [여기에 페이지만 메모하듯 데이터만 추가하면 CSS와 HTML이 자동으로 완성됩니다!]
+        const writeupData = [
+            {
+                tags: ["OverTheWire", "Bandit"],
+                date: "2026-03",
+                title: "[Bandit] Level 16 &rarr; Level 17 Write-up",
+                summary: "포트 스캔(nmap) 활용 및 SSH 키 교환 과정 트러블슈팅 정리",
+                detail: `# Problem Analysis\n- nmap을 통한 포트 스캔 범위 지정 및 서비스 확인\n- SSL/TLS 연결 시 발생하는 renegotiation 이슈 해결 과정 및 manpage 참조 내용 기록`
+            },
+            {
+                tags: ["Web Hacking", "Dreamhack"],
+                date: "2026-02",
+                title: "XSS Filtering Bypass 기술 정리",
+                summary: "정규 표현식을 우회하기 위한 특수 문자 인코딩 및 태그 변형 기법",
+                detail: `# Vulnerability Note\n- 필터링 로직에서 대소문자 혼용 및 우회 문자열 패턴 분석\n- 페이로드 작성 시 공백 대체 문자의 활용법 정리`
+            },
+            {
+                tags: ["Brute Force", "DVWA"],
+                date: "2026-01",
+                title: "DVWA Brute Force (Low to High) 풀이",
+                summary: "Burp Suite와 Hydra를 활용한 인증 우회 및 무차별 대입 공격 실습",
+                detail: `# Attack Vector\n- Low 레벨 세션 토큰 및 파라미터 구조 분석\n- Hydra를 이용한 고속 로그인 브루트포싱 테스트 환경 구축`
+            }
+            // 새로운 라이트업을 추가하고 싶다면 아래 형식으로 콤마(,)와 함께 추가하세요!
+            /*
+            {
+                tags: ["카테고리1", "카테고리2"],
+                date: "YYYY-MM",
+                title: "문제 제목",
+                summary: "간단한 요약 설명",
+                detail: "상세 풀이 내용 (줄바꿈은 \\n 사용)"
+            }
+            */
+        ];
+
+        // 데이터를 기반으로 HTML과 CSS 구조를 자동으로 조립하여 화면에 출력하는 스크립트
+        const container = document.getElementById('writeupContainer');
+
+        writeupData.forEach(item => {
+            const itemDiv = document.createElement('div');
+            itemDiv.className = 'writeup-item';
+            
+            // 클릭 시 상세 내용 토글 기능
+            itemDiv.onclick = function() {
+                this.classList.toggle('active');
+            };
+
+            // 태그 반복문 처리
+            let tagsHtml = '';
+            item.tags.forEach(tag => {
+                tagsHtml += `<span class="tag">${tag}</span>`;
+            });
+
+            // 카드 내부 HTML 자동 조합
+            itemDiv.innerHTML = `
+                <div class="meta-info">
+                    ${tagsHtml}
+                    <span class="date">${item.date}</span>
+                </div>
+                <div class="writeup-title">${item.title}</div>
+                <div class="writeup-summary">${item.summary}</div>
+                <div class="writeup-detail">${item.detail}</div>
+            `;
+
+            container.appendChild(itemDiv);
+        });
+    </script>
 </body>
 </html>
