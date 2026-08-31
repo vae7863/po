@@ -1,1 +1,293 @@
 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박대만 | CTF Write-up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --primary-color: #39d353;
+            --card-color: #161b22;
+            --border-color: #30363d;
+            --header-height: 60px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--primary-color);
+            text-shadow: 0 0 5px rgba(57, 211, 83, 0.4);
+        }
+
+        /* --- 헤더 & 네비게이션 --- */
+        .main-header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: #fff;
+            text-decoration: none;
+            text-shadow: 0 0 5px var(--primary-color);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .main-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 8px 12px;
+            font-weight: 700;
+            border-radius: 4px;
+            transition: color 0.3s, background 0.3s;
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            color: var(--primary-color);
+            background: rgba(57, 211, 83, 0.1);
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+
+        /* --- 본문 섹션 --- */
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: #8b949e;
+            margin-bottom: 40px;
+        }
+
+        /* --- 터미널 & 라이트업 리스트 --- */
+        .terminal-bar {
+            background: #010409;
+            border: 1px solid var(--border-color);
+            border-radius: 6px 6px 0 0;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            color: #8b949e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .writeup-list {
+            background: var(--card-color);
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            margin-bottom: 50px;
+        }
+
+        .writeup-item {
+            padding: 20px 25px;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .writeup-item:last-child {
+            border-bottom: none;
+        }
+
+        .writeup-item:hover {
+            background: rgba(57, 211, 83, 0.03);
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 10px;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+        }
+
+        .tag {
+            background: #21262d;
+            color: var(--primary-color);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+        }
+
+        .date {
+            color: #8b949e;
+        }
+
+        .writeup-title {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .writeup-summary {
+            font-size: 0.95rem;
+            color: #8b949e;
+        }
+
+        .writeup-detail {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #0d1117;
+            border-left: 3px solid var(--primary-color);
+            font-size: 0.9rem;
+            color: #c9d1d9;
+            white-space: pre-wrap;
+        }
+
+        .writeup-item.active .writeup-detail {
+            display: block;
+        }
+
+        /* --- 푸터 --- */
+        .main-footer {
+            text-align: center;
+            padding: 20px;
+            background: #010409;
+            border-top: 1px solid var(--border-color);
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">박대만</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about">소개</a></li>
+                    <li><a href="index.html#skills">기술</a></li>
+                    <li><a href="index.html#projects">프로젝트</a></li>
+                    <li><a href="ctf.html" class="active">CTF Write-up</a></li>
+                    <li><a href="index.html#contact">연락처</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container content-section">
+        <h2 class="section-title">CTF Write-up Archive</h2>
+        <p class="section-desc">보안 문제 풀이 및 분석 과정을 기록하는 공간입니다. 항목을 클릭하여 상세 풀이를 확인하세요.</p>
+
+        <div class="terminal-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span>bash - ctf_archive_list.sh</span>
+        </div>
+
+        <div class="writeup-list">
+            <!-- 라이트업 항목 1 -->
+            <div class="writeup-item" onclick="this.classList.toggle('active')">
+                <div class="meta-info">
+                    <span class="tag">OverTheWire</span>
+                    <span class="tag">Bandit</span>
+                    <span class="date">2026-03</span>
+                </div>
+                <div class="writeup-title">[Bandit] Level 16 &rarr; Level 17 Write-up</div>
+                <div class="writeup-summary">포트 스캔(nmap) 활용 및 SSH 키 교환 과정 트러블슈팅 정리</div>
+                <div class="writeup-detail"># Problem Analysis
+- nmap을 통한 포트 스캔 범위 지정 및 서비스 확인
+- SSL/TLS 연결 시 발생하는 renegotiation 이슈 해결 과정 및 manpage 참조 내용 기록</div>
+            </div>
+
+            <!-- 라이트업 항목 2 -->
+            <div class="writeup-item" onclick="this.classList.toggle('active')">
+                <div class="meta-info">
+                    <span class="tag">Web Hacking</span>
+                    <span class="tag">Dreamhack</span>
+                    <span class="date">2026-02</span>
+                </div>
+                <div class="writeup-title">XSS Filtering Bypass 기술 정리</div>
+                <div class="writeup-summary">정규 표현식을 우회하기 위한 특수 문자 인코딩 및 태그 변형 기법</div>
+                <div class="writeup-detail"># Vulnerability Note
+- 필터링 로직에서 대소문자 혼용 및 우회 문자열 패턴 분석
+- 페이로드 작성 시 공백 대체 문자의 활용법 정리</div>
+            </div>
+
+            <!-- 라이트업 항목 3 -->
+            <div class="writeup-item" onclick="this.classList.toggle('active')">
+                <div class="meta-info">
+                    <span class="tag">Brute Force</span>
+                    <span class="tag">DVWA</span>
+                    <span class="date">2026-01</span>
+                </div>
+                <div class="writeup-title">DVWA Brute Force (Low to High) 풀이</div>
+                <div class="writeup-summary">Burp Suite와 Hydra를 활용한 인증 우회 및 무차별 대입 공격 실습</div>
+                <div class="writeup-detail"># Attack Vector
+- Low 레벨 세션 토큰 및 파라미터 구조 분석
+- Hydra를 이용한 고속 로그인 브루트포싱 테스트 환경 구축</div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 박대만. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
