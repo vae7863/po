@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박대만 | 포트폴리오 (색상 애니메이션 버전)</title>
+    <title>박대만 | 포트폴리오</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* --- 사이버 보안 테마 스타일 --- */
         :root {
             --bg-color: #0d1117;
             --text-color: #c9d1d9;
-            --primary-color: #39d353; /* GitHub-like Green */
+            --primary-color: #39d353;
             --card-color: #161b22;
             --border-color: #30363d;
             --header-height: 60px;
@@ -115,7 +114,7 @@
             text-shadow: 0 0 8px var(--primary-color);
         }
 
-        /* --- 홈 섹션 & 타이핑 효과 --- */
+        /* --- 홈 섹션 --- */
         #home {
             height: calc(100vh - var(--header-height));
             display: flex;
@@ -267,6 +266,7 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
 
         .project-content h3 { font-size: 1.5rem; }
@@ -315,7 +315,6 @@
 </head>
 <body>
 
-    <!-- 헤더 -->
     <header class="main-header">
         <div class="container">
             <a href="#home" class="logo">박대만</a>
@@ -331,13 +330,11 @@
     </header>
 
     <main>
-        <!-- 홈 섹션 -->
         <section id="home">
             <h1>박대만</h1>
             <p>IT & 사이버 보안 전공 예비 대학생</p>
         </section>
 
-        <!-- 자기소개 섹션 -->
         <section id="about">
             <div class="container">
                 <h2 class="section-title">소개</h2>
@@ -357,7 +354,6 @@
             </div>
         </section>
 
-        <!-- 기술 섹션 -->
         <section id="skills">
             <div class="container">
                 <h2 class="section-title">보유 기술</h2>
@@ -386,43 +382,30 @@
             </div>
         </section>
 
-        <!-- 프로젝트 섹션 -->
         <section id="projects">
             <div class="container">
                 <h2 class="section-title">프로젝트</h2>
                 <div class="projects-grid">
+                    <!-- CTF 라이트업 프로젝트 카드 -->
                     <div class="project-card">
-                        <div class="project-image">프로젝트 이미지 (400x200)</div>
+                        <div class="project-image">> ./ctf_archive</div>
                         <div class="project-content">
-                            <h3>프로젝트 1 제목</h3>
-                            <p>아직 없음</p>
+                            <h3>CTF Write-up & Security Notes</h3>
+                            <p>Dreamhack, OverTheWire 및 각종 취약점 분석 문제를 직접 풀고 기록하는 인터랙티브 라이트업 저장소입니다.</p>
                             <div class="project-links">
-                                <a href="#" target="_blank">Live Demo</a>
-                                <a href="#" target="_blank">GitHub</a>
+                                <a href="ctf.html">View Write-ups</a> <!-- 새로 만든 ctf 페이지로 연결 -->
+                                <a href="여기에_깃허브_링크_입력" target="_blank">GitHub Repository</a>
                             </div>
                         </div>
                     </div>
                     
                     <div class="project-card">
-                        <div class="project-image">프로젝트 이미지 (400x200)</div>
+                        <div class="project-image">프로젝트 이미지</div>
                         <div class="project-content">
                             <h3>프로젝트 2 제목</h3>
-                            <p>아직 없음</p>
+                            <p>추가 예정 프로젝트입니다.</p>
                             <div class="project-links">
-                                <a href="#" target="_blank">Live Demo</a>
-                                <a href="#" target="_blank">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">프로젝트 이미지 (400x200)</div>
-                        <div class="project-content">
-                            <h3>프로젝트 3 제목</h3>
-                            <p>아직 없음</p>
-                            <div class="project-links">
-                                <a href="#" target="_blank">Live Demo</a>
-                                <a href="#" target="_blank">GitHub</a>
+                                <a href="여기에_깃허브_링크_입력" target="_blank">GitHub</a>
                             </div>
                         </div>
                     </div>
@@ -430,7 +413,6 @@
             </div>
         </section>
 
-        <!-- 연락처 섹션 -->
         <section id="contact">
             <div class="container">
                 <h2 class="section-title">연락처</h2>
@@ -440,10 +422,10 @@
         </section>
     </main>
 
-    <!-- 푸터 -->
     <footer class="main-footer">
         <div class="container">
             <p>&copy; 2026 박대만. All Rights Reserved.</p>
         </div>
-    </body>
+    </footer>
+</body>
 </html>
