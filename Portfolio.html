@@ -40,9 +40,6 @@
             line-height: 1.7;
             animation: fadeIn 1s ease-in-out;
         }
-        
-
-
 
         .container {
             max-width: 1100px;
@@ -126,9 +123,9 @@
             justify-content: center;
             text-align: center;
             flex-direction: column;
-            position: relative; /* Ensure pseudo-element is positioned correctly */
-            overflow: hidden; /* Hide overflowing grid parts */
-            z-index: 0; /* z-index 추가 */
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
         }
 
         #home::before {
@@ -140,15 +137,15 @@
             height: 100%;
             background-image: linear-gradient(0deg, transparent 24%, var(--primary-color) 25%, var(--primary-color) 26%, transparent 27%, transparent 74%, var(--primary-color) 75%, var(--primary-color) 76%, transparent 77%, transparent),
                               linear-gradient(90deg, transparent 24%, var(--primary-color) 25%, var(--primary-color) 26%, transparent 27%, transparent 74%, var(--primary-color) 75%, var(--primary-color) 76%, transparent 77%, transparent);
-            background-size: 50px 50px; /* Size of the grid cells */
-            opacity: 0.15; /* 보이도록 증가 */
-            z-index: -1; /* Behind content */
-            animation: animateGrid 30s linear infinite, changeHue 20s linear infinite; /* 애니메이션 강제 적용 및 색상 변경 추가 */
+            background-size: 50px 50px;
+            opacity: 0.15;
+            z-index: -1;
+            animation: animateGrid 30s linear infinite, changeHue 20s linear infinite;
         }
 
         @keyframes animateGrid {
             from { background-position: 0 0; }
-            to { background-position: 50px 50px; } /* Move by one grid cell size */
+            to { background-position: 50px 50px; }
         }
         
         @keyframes changeHue {
@@ -162,7 +159,7 @@
             border-right: 0.15em solid var(--primary-color);
             white-space: nowrap;
             overflow: hidden;
-            max-width: fit-content; /* 추가: 텍스트 내용물 너비만큼만 차지하도록 설정 */
+            max-width: fit-content;
             animation: typing 1.5s steps(3, end) forwards, blink-caret .75s step-end 2 forwards;
         }
 
@@ -172,8 +169,8 @@
         }
 
         @keyframes typing {
-            from { max-width: 0 } /* width 대신 max-width를 애니메이션 */
-            to { max-width: 10ch } /* 충분히 큰 ch 단위로 설정 */
+            from { max-width: 0 }
+            to { max-width: 10ch }
         }
 
         @keyframes blink-caret {
@@ -314,17 +311,13 @@
             background: #010409;
             border-top: 1px solid var(--border-color);
         }
-
     </style>
 </head>
 <body>
 
-    <!-- =================================
-    헤더 (네비게이션)
-    ================================== -->
+    <!-- 헤더 -->
     <header class="main-header">
         <div class="container">
-            <!-- 사용자의 이니셜이나 짧은 로고로 변경하세요 -->
             <a href="#home" class="logo">박대만</a>
             <nav class="main-nav">
                 <ul>
@@ -338,46 +331,37 @@
     </header>
 
     <main>
-        <!-- =================================
-        홈 섹션
-        ================================== -->
+        <!-- 홈 섹션 -->
         <section id="home">
-            <!-- 박대만과 직무로 변경하세요 -->
             <h1>박대만</h1>
-            <p>한봄고등학교 빅데과 2학년</p>
+            <p>IT & 사이버 보안 전공 예비 대학생</p>
         </section>
 
-        <!-- =================================
-        자기소개 섹션
-        ================================== -->
+        <!-- 자기소개 섹션 -->
         <section id="about">
             <div class="container">
                 <h2 class="section-title">소개</h2>
                 <div class="about-content">
                     <div class="about-text">
                         <h3>안녕하세요, 박대만입니다.</h3>
-                        <!-- 당신의 자기소개를 자유롭게 작성하세요 -->
                         <p>
-                            저는 현재 한봄고등학교에서 미래의 IT 전문가를 꿈꾸며 공부하고 있습니다. 웹 개발을 위해 JSP와 HTML을, 프로그래밍 기초를 다지기 위해 Python과 C언어를 배우고 있습니다
-                            더 나아가, 정보처리산업기사, 네트워크 관리사, PC정비사 자격증 취득을 목표로 전문성을 키워나가고 있습니다.
+                            변화하는 IT 환경 속에서 가치를 창출하는 개발자 및 보안 전문가를 목표로 하고 있습니다. 
+                            탄탄한 프로그래밍 기초와 웹 기술을 바탕으로 실무 역량을 키워나가고 있으며, 
+                            지속적인 학습과 도전으로 전문성을 다지고 있습니다.
                         </p>
                     </div>
                     <div class="about-photo">
-                        <!-- 'your-photo.jpg'를 당신의 사진 파일명으로 변경하세요 -->
                         <img src="images/irem.jpg" alt="프로필 사진">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- =================================
-        기술 섹션
-        ================================== -->
+        <!-- 기술 섹션 -->
         <section id="skills">
             <div class="container">
                 <h2 class="section-title">보유 기술</h2>
                 <div class="skills-grid">
-                    <!-- 보유한 기술에 맞게 수정하세요 -->
                     <div class="skill-category">
                         <h3>Frontend</h3>
                         <ul>
@@ -402,14 +386,11 @@
             </div>
         </section>
 
-        <!-- =================================
-        프로젝트 섹션
-        ================================== -->
+        <!-- 프로젝트 섹션 -->
         <section id="projects">
             <div class="container">
                 <h2 class="section-title">프로젝트</h2>
                 <div class="projects-grid">
-                    <!-- 아래 .project-card를 복사하여 당신의 프로젝트를 추가하세요 -->
                     <div class="project-card">
                         <div class="project-image">프로젝트 이미지 (400x200)</div>
                         <div class="project-content">
@@ -449,28 +430,20 @@
             </div>
         </section>
 
-        <!-- =================================
-        연락처 섹션
-        ================================== -->
+        <!-- 연락처 섹션 -->
         <section id="contact">
             <div class="container">
                 <h2 class="section-title">연락처</h2>
-                <p>언제든지 편하게 연락주세요. 함께 일할 기회를 기다립니다.</p>
-                <!-- 'your-email@example.com'을 당신의 이메일로 변경하세요 -->
+                <p>언제든지 편하게 연락주세요. 함께 성장할 기회를 기다립니다.</p>
                 <a href="mailto:your-email@example.com" class="contact-button">이메일 보내기</a>
             </div>
         </section>
     </main>
 
-    <!-- =================================
-    푸터
-    ================================== -->
+    <!-- 푸터 -->
     <footer class="main-footer">
         <div class="container">
-            <!-- 박대만으로 변경하세요 -->
-            <p>&copy; 2025 박대만. All Rights Reserved.</p>
+            <p>&copy; 2026 박대만. All Rights Reserved.</p>
         </div>
-    </footer>
-
-</body>
+    </body>
 </html>
