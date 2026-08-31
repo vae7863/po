@@ -42,7 +42,7 @@
             text-shadow: 0 0 5px rgba(57, 211, 83, 0.4);
         }
 
-        /* --- 헤더 & 네비게이션 --- */
+        /* 헤더 & 네비게이션 */
         .main-header {
             position: sticky;
             top: 0;
@@ -92,7 +92,6 @@
             text-shadow: 0 0 8px var(--primary-color);
         }
 
-        /* 작성 버튼 디자인 */
         .btn-write {
             background: rgba(57, 211, 83, 0.15) !important;
             border: 1px solid var(--primary-color);
@@ -104,7 +103,7 @@
             color: #000 !important;
         }
 
-        /* --- 본문 섹션 --- */
+        /* 본문 섹션 */
         .content-section {
             padding: 60px 0;
         }
@@ -121,12 +120,12 @@
             margin-bottom: 40px;
         }
 
-        /* --- 작성 모달 팝업 창 --- */
+        /* 노트북/윈도우 맞춤형 대형 모달 창 */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
             z-index: 2000;
             justify-content: center;
@@ -135,82 +134,104 @@
 
         .modal-content {
             background: var(--card-color);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--primary-color);
             border-radius: 8px;
-            width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 850px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            padding-bottom: 15px;
         }
 
         .modal-close {
             background: none;
             border: none;
             color: #8b949e;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
         }
         .modal-close:hover { color: #fff; }
 
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
             color: var(--primary-color);
+            font-weight: bold;
         }
 
         .form-group input, .form-group textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background: #0d1117;
             border: 1px solid var(--border-color);
             border-radius: 4px;
             color: #c9d1d9;
             font-family: 'Roboto Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 5px rgba(57, 211, 83, 0.3);
         }
 
         .form-group textarea {
             resize: vertical;
-            height: 120px;
+            height: 220px;
         }
 
         .form-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 25px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
         }
 
         .btn-submit {
             background: var(--primary-color);
             color: #000;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
             font-family: 'Roboto Mono', monospace;
+            font-size: 1rem;
         }
         .btn-submit:hover {
             opacity: 0.9;
-            box-shadow: 0 0 8px var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-color);
         }
 
-        /* --- 터미널 & 라이트업 리스트 --- */
+        /* 터미널 및 리스트 스타일 */
         .terminal-bar {
             background: #010409;
             border: 1px solid var(--border-color);
@@ -282,30 +303,50 @@
             color: #8b949e;
         }
 
-        .writeup-title {
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 5px;
+        .writeup-title-area {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 5px;
         }
 
-        /* 개별 문제 풀이 링크 버튼 스타일 */
-        .link-btn {
+        .writeup-title {
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
             background: transparent;
-            border: 1px solid var(--primary-color);
-            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            color: #8b949e;
             padding: 4px 10px;
             font-size: 0.8rem;
             border-radius: 4px;
             text-decoration: none;
             transition: all 0.2s;
+            cursor: pointer;
+        }
+        .action-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .action-btn.del:hover {
+            border-color: #ff5f56;
+            color: #ff5f56;
+        }
+
+        .link-btn {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
         }
         .link-btn:hover {
             background: var(--primary-color);
             color: #000;
-            box-shadow: 0 0 5px var(--primary-color);
         }
 
         .writeup-summary {
@@ -328,7 +369,6 @@
             display: block;
         }
 
-        /* --- 푸터 --- */
         .main-footer {
             text-align: center;
             padding: 20px;
@@ -357,40 +397,51 @@
         </div>
     </header>
 
-    <!-- 라이트업 작성 팝업 모달 -->
+    <!-- 대형 작성/수정 모달 창 -->
     <div class="modal-overlay" id="writeModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>새로운 CTF Write-up 등록</h3>
+                <h3 id="modalHeading">새로운 CTF Write-up 등록</h3>
                 <button class="modal-close" id="closeModalBtn">&times;</button>
             </div>
             <form id="writeupForm">
-                <div class="form-group">
-                    <label for="inputTitle">문제 제목</label>
-                    <input type="text" id="inputTitle" placeholder="예: [Dreamhack] XSS Basic" required>
+                <input type="hidden" id="editIndex" value="-1">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputTitle">문제 제목</label>
+                        <input type="text" id="inputTitle" placeholder="예: [Dreamhack] XSS Basic" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword">관리자 비밀번호 (작성/수정용)</label>
+                        <input type="password" id="inputPassword" placeholder="비밀번호 입력" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputTags">태그 (쉼표로 구분)</label>
-                    <input type="text" id="inputTags" placeholder="Web Hacking, Dreamhack" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputTags">태그 (쉼표로 구분)</label>
+                        <input type="text" id="inputTags" placeholder="Web Hacking, Dreamhack" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputDate">날짜 (YYYY-MM)</label>
+                        <input type="text" id="inputDate" placeholder="2026-04" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputDate">날짜 (YYYY-MM)</label>
-                    <input type="text" id="inputDate" placeholder="2026-04" required>
+                <div class="form-row">
+                    <div class="form-group full-width">
+                        <label for="inputLink">풀이 링크 (선택사항)</label>
+                        <input type="url" id="inputLink" placeholder="https://github.com/...">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputLink">풀이 링크 (깃허브, 블로그 등 - 선택사항)</label>
-                    <input type="url" id="inputLink" placeholder="https://github.com/... (없으면 비워두세요)">
-                </div>
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label for="inputSummary">한줄 요약</label>
                     <input type="text" id="inputSummary" placeholder="쿠키 탈취를 위한 XSS 페이로드 우회 실습" required>
                 </div>
-                <div class="form-group">
+                <div class="form-group full-width">
                     <label for="inputDetail">상세 내용 (풀이 과정 및 분석 메모)</label>
-                    <textarea id="inputDetail" placeholder="# Analysis\\n- 스크립트 필터링 우회 방안 정리..."></textarea>
+                    <textarea id="inputDetail" placeholder="# Analysis&#10;- 스크립트 필터링 우회 방안 정리..."></textarea>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">등록하기</button>
+                    <button type="submit" class="btn-submit">등록 / 저장하기</button>
                 </div>
             </form>
         </div>
@@ -404,7 +455,7 @@
             <span class="dot dot-red"></span>
             <span class="dot dot-yellow"></span>
             <span class="dot dot-green"></span>
-            <span>bash - ctf_archive_manager.sh</span>
+            <span>bash - ctf_secure_archive.sh</span>
         </div>
 
         <div class="writeup-list" id="writeupContainer"></div>
@@ -417,52 +468,57 @@
     </footer>
 
     <script>
-        // 초기 기본 데이터
-        const defaultData = [
+        // 기본 마스터 비밀번호 (코드 내에서 원하는 비밀번호로 변경 가능합니다)
+        const ADMIN_PASSWORD = "1234";
+
+        let writeupData = JSON.parse(localStorage.getItem('ctf_writeups')) || [
             {
                 tags: ["OverTheWire", "Bandit"],
                 date: "2026-03",
-                title: "[Bandit] Level 16 &rarr; Level 17 Write-up",
+                title: "[Bandit] Level 16 → Level 17 Write-up",
                 link: "https://github.com",
                 summary: "포트 스캔(nmap) 활용 및 SSH 키 교환 과정 트러블슈팅 정리",
-                detail: "# Problem Analysis\n- nmap을 통한 포트 스캔 범위 지정 및 서비스 확인\n- SSL/TLS 연결 시 발생하는 renegotiation 이슈 해결 과정 참조"
+                detail: "# Problem Analysis\n- nmap을 통한 포트 스캔 범위 지정 및 서비스 확인\n- SSL/TLS 연결 시 발생하는 renegotiation 이슈 해결 과정 참조",
+                password: "1234"
             }
         ];
-
-        // 브라우저 저장소에서 데이터 불러오기 (없으면 기본값)
-        let writeupData = JSON.parse(localStorage.getItem('ctf_writeups')) || defaultData;
 
         const container = document.getElementById('writeupContainer');
         const openModalBtn = document.getElementById('openModalBtn');
         const closeModalBtn = document.getElementById('closeModalBtn');
         const writeModal = document.getElementById('writeModal');
         const writeupForm = document.getElementById('writeupForm');
+        const modalHeading = document.getElementById('modalHeading');
+        const editIndexInput = document.getElementById('editIndex');
 
-        // 모달 열고 닫기 제어
         openModalBtn.onclick = (e) => {
             e.preventDefault();
+            modalHeading.innerText = "새로운 CTF Write-up 등록";
+            editIndexInput.value = -1;
+            writeupForm.reset();
+            document.getElementById('inputPassword').value = ADMIN_PASSWORD; // 편의상 기본값 세팅
             writeModal.style.display = 'flex';
         };
+
         closeModalBtn.onclick = () => {
             writeModal.style.display = 'none';
         };
+
         window.onclick = (e) => {
             if (e.target == writeModal) {
                 writeModal.style.display = 'none';
             }
         };
 
-        // 화면에 리스트 렌더링
         function renderWriteups() {
             container.innerHTML = '';
             
-            writeupData.forEach((item) => {
+            writeupData.forEach((item, index) => {
                 const itemDiv = document.createElement('div');
                 itemDiv.className = 'writeup-item';
                 
-                // 카드 클릭 시 상세 토글 (링크 버튼 클릭 시에는 펼쳐지지 않게 방지)
                 itemDiv.onclick = function(e) {
-                    if (e.target.tagName === 'A' || e.target.closest('a')) return;
+                    if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) return;
                     this.classList.toggle('active');
                 };
 
@@ -471,10 +527,9 @@
                     tagsHtml += `<span class="tag">${tag.trim()}</span>`;
                 });
 
-                // 풀이 링크가 입력된 경우에만 우측에 링크 버튼 생성
                 let linkHtml = '';
                 if (item.link && item.link.trim() !== '') {
-                    linkHtml = `<a href="${item.link}" target="_blank" class="link-btn">풀이 링크 &rarr;</a>`;
+                    linkHtml = `<a href="${item.link}" target="_blank" class="action-btn link-btn">풀이 링크 &rarr;</a>`;
                 }
 
                 itemDiv.innerHTML = `
@@ -482,9 +537,13 @@
                         <div class="meta-left">${tagsHtml}</div>
                         <span class="date">${item.date}</span>
                     </div>
-                    <div class="writeup-title">
-                        <span>${item.title}</span>
-                        ${linkHtml}
+                    <div class="writeup-title-area">
+                        <div class="writeup-title">${item.title}</div>
+                        <div class="btn-group">
+                            ${linkHtml}
+                            <button class="action-btn" onclick="openEditModal(${index})">수정</button>
+                            <button class="action-btn del" onclick="deleteWriteup(${index})">삭제</button>
+                        </div>
                     </div>
                     <div class="writeup-summary">${item.summary}</div>
                     <div class="writeup-detail">${item.detail}</div>
@@ -494,11 +553,57 @@
             });
         }
 
-        // 폼 제출 이벤트 (자동 저장 기능 포함)
+        window.openEditModal = function(index) {
+            const pwd = prompt("해당 글을 수정하려면 비밀번호를 입력하세요:");
+            if (pwd === null) return;
+            
+            const target = writeupData[index];
+            const checkPwd = target.password || ADMIN_PASSWORD;
+
+            if (pwd !== checkPwd && pwd !== ADMIN_PASSWORD) {
+                alert("비밀번호가 일치하지 않습니다!");
+                return;
+            }
+
+            modalHeading.innerText = "CTF Write-up 수정";
+            editIndexInput.value = index;
+            
+            document.getElementById('inputTitle').value = target.title.replace('→', '→');
+            document.getElementById('inputPassword').value = target.password || ADMIN_PASSWORD;
+            document.getElementById('inputTags').value = target.tags.join(', ');
+            document.getElementById('inputDate').value = target.date;
+            document.getElementById('inputLink').value = target.link || '';
+            document.getElementById('inputSummary').value = target.summary;
+            document.getElementById('inputDetail').value = target.detail;
+
+            writeModal.style.display = 'flex';
+        };
+
+        window.deleteWriteup = function(index) {
+            const pwd = prompt("해당 글을 삭제하려면 비밀번호를 입력하세요:");
+            if (pwd === null) return;
+
+            const target = writeupData[index];
+            const checkPwd = target.password || ADMIN_PASSWORD;
+
+            if (pwd !== checkPwd && pwd !== ADMIN_PASSWORD) {
+                alert("비밀번호가 일치하지 않습니다!");
+                return;
+            }
+
+            if (confirm("정말 이 라이트업을 삭제하시겠습니까?")) {
+                writeupData.splice(index, 1);
+                localStorage.setItem('ctf_writeups', JSON.stringify(writeupData));
+                renderWriteups();
+            }
+        };
+
         writeupForm.onsubmit = function(e) {
             e.preventDefault();
 
+            const editIdx = parseInt(editIndexInput.value);
             const title = document.getElementById('inputTitle').value;
+            const password = document.getElementById('inputPassword').value;
             const tagsInput = document.getElementById('inputTags').value;
             const date = document.getElementById('inputDate').value;
             const link = document.getElementById('inputLink').value;
@@ -507,30 +612,30 @@
 
             const tags = tagsInput.split(',');
 
-            const newEntry = {
+            const entryData = {
                 tags: tags,
                 date: date,
                 title: title,
                 link: link,
                 summary: summary,
-                detail: detail
+                detail: detail,
+                password: 299792458
             };
 
-            // 최신 글이 맨 위에 오도록 추가
-            writeupData.unshift(newEntry);
+            if (editIdx === -1) {
+                writeupData.unshift(entryData);
+            } else {
+                writeupData[editIdx] = entryData;
+            }
 
-            // 로컬 스토리지에 영구 저장
             localStorage.setItem('ctf_writeups', JSON.stringify(writeupData));
-
-            // 화면 갱신
             renderWriteups();
 
-            // 입력폼 초기화 및 모달 닫기
             writeupForm.reset();
             writeModal.style.display = 'none';
+            editIndexInput.value = -1;
         };
 
-        // 초기 실행
         renderWriteups();
     </script>
 </body>
