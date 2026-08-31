@@ -468,8 +468,8 @@
     </footer>
 
     <script>
-        // 변경된 관리자 비밀번호 적용 완료
-        const ADMIN_PASSWORD = "299729458";
+        // 마스터 비밀번호 설정 (빛의 속도)
+        const ADMIN_PASSWORD = "299792458";
 
         let writeupData = JSON.parse(localStorage.getItem('ctf_writeups')) || [
             {
@@ -479,7 +479,7 @@
                 link: "https://github.com",
                 summary: "포트 스캔(nmap) 활용 및 SSH 키 교환 과정 트러블슈팅 정리",
                 detail: "# Problem Analysis\n- nmap을 통한 포트 스캔 범위 지정 및 서비스 확인\n- SSL/TLS 연결 시 발생하는 renegotiation 이슈 해결 과정 참조",
-                password: "299729458"
+                password: "299792458"
             }
         ];
 
@@ -496,7 +496,8 @@
             modalHeading.innerText = "새로운 CTF Write-up 등록";
             editIndexInput.value = -1;
             writeupForm.reset();
-            document.getElementById('inputPassword').value = ADMIN_PASSWORD; // 기본값 세팅
+            // 작성 창을 열 때 비밀번호 칸이 자동으로 채워지지 않도록 비워둠
+            document.getElementById('inputPassword').value = '';
             writeModal.style.display = 'flex';
         };
 
@@ -569,7 +570,8 @@
             editIndexInput.value = index;
             
             document.getElementById('inputTitle').value = target.title;
-            document.getElementById('inputPassword').value = target.password || ADMIN_PASSWORD;
+            // 수정 시에도 보안을 위해 기존 비밀번호를 화면에 노출하지 않고 비워둠
+            document.getElementById('inputPassword').value = '';
             document.getElementById('inputTags').value = target.tags.join(', ');
             document.getElementById('inputDate').value = target.date;
             document.getElementById('inputLink').value = target.link || '';
@@ -603,12 +605,17 @@
 
             const editIdx = parseInt(editIndexInput.value);
             const title = document.getElementById('inputTitle').value;
-            const password = document.getElementById('inputPassword').value;
+            let password = document.getElementById('inputPassword').value;
             const tagsInput = document.getElementById('inputTags').value;
             const date = document.getElementById('inputDate').value;
             const link = document.getElementById('inputLink').value;
             const summary = document.getElementById('inputSummary').value;
             const detail = document.getElementById('inputDetail').value;
+
+            // 만약 입력 칸을 비워둔 채 제출했다면 기본 마스터 비밀번호(299792458)로 설정
+            if (!password.trim()) {
+                password = ADMIN_PASSWORD;
+            }
 
             const tags = tagsInput.split(',');
 
